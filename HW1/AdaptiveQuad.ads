@@ -8,5 +8,3 @@ generic
         function RecAQuad(a, b, eps, whole: Float) return float;
         function SimpsonsRule(a, b: float) return float;
 end AdaptiveQuad;
-
-
