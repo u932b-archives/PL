@@ -3,10 +3,8 @@ import java.util.List;
 import java.io.*;
 
 @SuppressWarnings("serial")
-// class ComparableList implements Comparable<ComparableList>{ //extends ArrayList<T>{
-class ComparableList<T extends Comparable<T>> implements Comparable<ComparableList<T>>{
-// class ComparableList<T extends Comparable<T>> extends ArrayList<T> implements Comparable<ComparableList<T>>{
-//class ComparableList<T extends Comparable<? super T>> extends ArrayList<T> implements Comparable<ComparableList<T>>{
+class ComparableList<T extends Comparable<T>> extends ArrayList<T> implements Comparable<ComparableList<T>>{
+// class ComparableList<T extends Comparable<? super T>> extends ArrayList<T> implements Comparable<ComparableList<T>>{
     public int compareTo(ComparableList<T> s2){
         for (int i=1; i<=Math.min(this.size(), s2.size()); i++){
             int compare_result = this.get(i).compareTo(s2.get(i));
@@ -61,12 +59,15 @@ class B extends A{
     }
 
     public int compareTo(B other){
-        if(this.a > other.a)
-                return 1;
-        else if (this.a == other.a)
+        if(this.a > other.a){
+            return 1;
+        }
+        else if (this.a == other.a){
             return 0;
-        else
+        }
+        else{
             return -1;
+        }
     }
     public String toString() {
         return "B<" + this.a + "," + this.b + ">";
@@ -75,25 +76,17 @@ class B extends A{
 
 
 public class part1{
-    static <T> void addToCList(T test1, ComparableList<? super T> test2){
-    // static <T extends Comparable<T>> void addToCList(T test1, ComparableList<T> test2){
-    // public static <E, T> void addToCList(E test, T test2){
-        test2.add(test1);
+    static <T> void addToCList(T attachment, ComparableList<? super T> target_list){
+        target_list.add(attachment);
     }
 
     static void test(){
-        // ComparableList2 list1 = new ComparableList2<ComparableList2<Integer>>(Arrays.asList(1,2,3));
-        // ArrayList<Integer> a = new ArrayList<Integer>();
-        // ComparableList<Integer> a = new ComparableList<Integer>();
-        // a.add(1);
         ComparableList<A> c1 = new ComparableList<A>();
         ComparableList<A> c2 = new ComparableList<A>();
         for(int i = 0; i < 10; i++) {
 			addToCList(new A(i), c1);
             addToCList(new A(i), c2);
         }
-        System.out.print("a B: ");
-        System.out.println(new B(2,2));
 
         addToCList(new A(12), c1);
         addToCList(new B(6,6), c2);
@@ -124,18 +117,6 @@ public class part1{
     }
     public static void main(String [] args){
         test();
-        /*
-        A a1 = new A(6);
-        B b1 = new B(2,4);
-        B b2 = new B(3,5);
-        System.out.println(a1.toString());
-        System.out.println(b2.toString());
-        System.out.println(a1.compareTo(b1));
-        System.out.println(a1.compareTo(b2));
-        System.out.println(b1.compareTo(a1));
-        System.out.println(b2.compareTo(a1));
-        System.out.println(b1.compareTo(b2));
-        */
     }
 
 }
