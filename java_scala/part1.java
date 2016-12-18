@@ -58,6 +58,7 @@ class B extends A{
         this.b = y;
     }
 
+    /*
     public int compareTo(B other){
         if(this.a > other.a){
             return 1;
@@ -68,7 +69,7 @@ class B extends A{
         else{
             return -1;
         }
-    }
+    }*/
     public String toString() {
         return "B<" + this.a + "," + this.b + ">";
     }
